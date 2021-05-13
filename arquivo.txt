@@ -1,0 +1,6 @@
+var i = 1;
+if (a){
+    var 1v1 = 123;
+}else{
+    const qasad =1; 
+}
