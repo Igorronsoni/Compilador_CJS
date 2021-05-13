@@ -11,7 +11,7 @@ class Analisador_Sintatico:
     def read(self):
         arquivo = open('output/output.lex.txt','r')
         self.scanner = arquivo.readlines()
-        
+
         for i in range(len(self.scanner)):
             self.scanner[i] = self.scanner[i].replace('\n','')
          
@@ -53,10 +53,13 @@ class Analisador_Sintatico:
         readState = self.pilha[-1]
         transition = self.getEstadoFita(cabecote)
         while True:
+
             if transition in self.estados[readState]:
                 acao = self.estados[readState][transition]
             else:
                 termo = self.scanner[cabecote].split(' ')
+                if termo[0] == '$':
+                    return
                 raise SyntaxError(f"Unrecognized Expression. The expression '{termo[3]}' was not recognized at line {termo[1]} and at the column {termo[2]}")
 
             if self.debug:
